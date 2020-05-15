@@ -38,6 +38,10 @@ public class ParticipanteDTO implements Serializable {
 
 	private String codigoGrupoLocacao;
 
+	private String empresa;
+
+	private String email;
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

@@ -61,6 +61,8 @@ public class FileUploadService {
 		dto.setCodigoHotel(campos[8]);
 		dto.setNomeHotel(campos[9]);
 		dto.setCodigoGrupoLocacao(campos[10]);
+		dto.setEmpresa(campos[11]);
+		dto.setEmail(campos[12]);
 
 		registraObjNaBase(dto);
 	}

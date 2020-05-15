@@ -144,6 +144,8 @@ public class ParticipanteService {
 		entity.setCodigoHotel(dto.getCodigoHotel());
 		entity.setNomeHotel(dto.getNomeHotel());
 		entity.setCodigoGrupoLocacao(dto.getCodigoGrupoLocacao());
+		entity.setEmpresa(dto.getEmpresa());
+		entity.setEmail(dto.getEmail());
 
 		return entity;
 	}
@@ -163,6 +165,8 @@ public class ParticipanteService {
 		dto.setCodigoHotel(entity.getCodigoHotel());
 		dto.setNomeHotel(entity.getNomeHotel());
 		dto.setCodigoGrupoLocacao(entity.getCodigoGrupoLocacao());
+		dto.setEmpresa(entity.getEmpresa());
+		dto.setEmail(entity.getEmail());
 
 		return dto;
 	}

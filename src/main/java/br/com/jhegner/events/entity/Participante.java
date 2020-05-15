@@ -36,6 +36,8 @@ public class Participante implements Serializable {
 	private String codigoHotel;
 	private String nomeHotel;
 	private String codigoGrupoLocacao;
+	private String empresa;
+	private String email;
 
 	@Override
 	public String toString() {
