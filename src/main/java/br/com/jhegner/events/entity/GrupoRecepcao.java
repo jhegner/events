@@ -6,8 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -29,13 +30,13 @@ public class GrupoRecepcao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(insertable = true, nullable = false, unique = true)
 	private Long numeroIdentificador;
 
 	private String nome;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(nullable = false)
+	@ManyToOne
 	private CentroRecepcao centroRecepcao;
 
 	@Enumerated(EnumType.STRING)
