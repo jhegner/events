@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_head.html :: head"></head>
+<body>
+
+	<div class="container">
+		<div th:replace="_commons.html :: jumbotron"></div>
+		<div class="row">
+			<div class="col-sm">
+				<a href="/participante" role="button" class="btn btn-success btn-lg btn-block" style="text-transform: uppercase;">Participante</a>
+			</div>
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-secondary btn-lg btn-block" style="text-transform: uppercase;">Centro de recepcao</a>
+			</div>
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-secondary btn-lg btn-block" style="text-transform: uppercase;">Grupo de recepcao</a>
+			</div>
+		</div>
+		<br /> <br />
+		<div class="row">
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-secondary btn-lg btn-block" style="text-transform: uppercase;">Evento</a>
+			</div>
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-danger btn-lg btn-block" style="text-transform: uppercase;">Alocacao</a>
+			</div>
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-warning btn-lg btn-block" style="text-transform: uppercase;">Simulacao</a>
+			</div>
+		</div>
+		<br /> <br />
+		<div class="row">
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-secondary btn-lg btn-block" style="text-transform: uppercase;">Responsaveis</a>
+			</div>
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-secondary btn-lg btn-block" style="text-transform: uppercase;">Anotacoes</a>
+			</div>
+			<div class="col-sm">
+				<a href="#" role="button" class="btn btn-secondary btn-lg btn-block" style="text-transform: uppercase;">Avaliacao</a>
+			</div>
+		</div>
+
+		<div class="container mt-5">
+			<a href="#" class="btn float-right mb-5"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span>
+			</a>
+			<a href="/configuracao" class="btn float-right mb-5"> <i class="fas fa-cogs"></i> <span>Configuracao</span>
+			</a> 
+		</div>
+	</div>
+	
+	<footer th:replace="_commons.html :: footer"></footer>
+	
+	<script th:replace="_commons.html :: script_tag_1"></script>
+	<script th:replace="_commons.html :: script_tag_2"></script>
+	<script th:replace="_commons.html :: script_tag_3"></script>
+	
+</body>
+</html>
