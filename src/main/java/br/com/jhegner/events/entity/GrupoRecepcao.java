@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "TAB_CENTRO_RECEPCAO")
+@Table(name = "TAB_GRUPO_RECEPCAO")
 public class GrupoRecepcao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
