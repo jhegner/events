@@ -1,18 +1,21 @@
 package br.com.jhegner.events.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import br.com.jhegner.events.enums.ETipoResponsavel;
+import br.com.jhegner.events.enums.EAvaliacao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,23 +24,26 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "TAB_RESPONSAVEL")
-public class Responsavel implements Serializable {
+@Table(name = "TAB_AVALIACAO")
+public class Avaliacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(insertable = true, nullable = false, unique = true)
-	private Long numeroIdentificacao;
+	private Long numeroAvaliacao;
 
-	private String nome;
+	@OneToOne
+	@JoinColumn(nullable = false)
+	private Participante participante;
 
-	private String email;
-
-	private String telefone;
+	private String texto;
 
 	@Enumerated(EnumType.STRING)
-	private ETipoResponsavel tipoResponsavel;
+	private EAvaliacao avaliacao;
+
+	@Column(columnDefinition = "TIMESTAMP")
+	private LocalDateTime dateTime;
 
 	@Override
 	public String toString() {

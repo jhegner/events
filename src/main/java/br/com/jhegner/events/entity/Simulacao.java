@@ -1,18 +1,18 @@
 package br.com.jhegner.events.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import br.com.jhegner.events.enums.ETipoResponsavel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,23 +21,29 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "TAB_RESPONSAVEL")
-public class Responsavel implements Serializable {
+@Table(name = "TAB_SIMULACAO_ALOCACAO")
+public class Simulacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(insertable = true, nullable = false, unique = true)
-	private Long numeroIdentificacao;
+	private Long numeroSequencial;
 
-	private String nome;
+	@OneToMany
+	@JoinColumn(nullable = false)
+	private Participante participante;
 
-	private String email;
+	@OneToMany
+	@JoinColumn(nullable = false)
+	private Evento evento;
 
-	private String telefone;
+	@OneToMany
+	@JoinColumn(nullable = false)
+	private GrupoRecepcao grupoRecepcao;
 
-	@Enumerated(EnumType.STRING)
-	private ETipoResponsavel tipoResponsavel;
+	@Column(columnDefinition = "TIMESTAMP")
+	private LocalDateTime dateTime;
 
 	@Override
 	public String toString() {

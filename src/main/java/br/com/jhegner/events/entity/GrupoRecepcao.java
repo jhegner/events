@@ -31,10 +31,13 @@ public class GrupoRecepcao implements Serializable {
 	@Id
 	@Column(insertable = true, nullable = false, unique = true)
 	private Long numeroIdentificador;
+
 	private String nome;
+
 	@ManyToOne(optional = false)
-	@JoinColumn(nullable = false, updatable = false)
+	@JoinColumn(nullable = false)
 	private CentroRecepcao centroRecepcao;
+
 	@Enumerated(EnumType.STRING)
 	private ETransporte transporte;
 
