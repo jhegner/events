@@ -2,7 +2,7 @@ package br.com.jhegner.events.enums;
 
 import java.util.Arrays;
 
-public enum Ordenacao {
+public enum EOrdenacao {
 
 	SlotName("1", "codigoGrupoHotel"), Group("2", "numeroPeticaoGrupo"), Hotel("3", "codigoHotel"),
 	FirstName("4", "primeiroNome"), LastName("5", "ultimoNome");
@@ -10,7 +10,7 @@ public enum Ordenacao {
 	private String codigo;
 	private String campo;
 
-	private Ordenacao(String codigo, String campo) {
+	private EOrdenacao(String codigo, String campo) {
 		this.codigo = codigo;
 		this.campo = campo;
 	}
@@ -23,8 +23,8 @@ public enum Ordenacao {
 		return campo;
 	}
 
-	public static Ordenacao obterOrdenacaoPeloCodigo(String codigo) {
-		return Arrays.asList(Ordenacao.values()).stream().filter(o -> codigo.equalsIgnoreCase(o.getCodigo()))
+	public static EOrdenacao obterOrdenacaoPeloCodigo(String codigo) {
+		return Arrays.asList(EOrdenacao.values()).stream().filter(o -> codigo.equalsIgnoreCase(o.getCodigo()))
 				.findFirst().get();
 	}
 
