@@ -56,7 +56,7 @@ public class FileUploadService {
 		dto.setUltimoNome(campos[3]);
 		dto.setPais(campos[4]);
 		dto.setIdioma1(campos[5]);
-		dto.setIdioma1(campos[6]);
+		dto.setIdioma2(campos[6]);
 		dto.setIdioma3(campos[7]);
 		dto.setCodigoHotel(campos[8]);
 		dto.setNomeHotel(campos[9]);
