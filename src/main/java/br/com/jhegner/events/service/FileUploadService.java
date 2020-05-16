@@ -41,7 +41,7 @@ public class FileUploadService {
 
 	private void lerLinhaFileParticipante(String line) {
 
-		String[] campos = line.split(";");
+		String[] campos = line.split(",");
 
 		criaObjetoParticipante(campos);
 	}
