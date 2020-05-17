@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.jhegner.events.dto.ParticipanteDTO;
-import br.com.jhegner.events.enums.TipoArquivo;
+import br.com.jhegner.events.enums.ETipoArquivo;
 import br.com.jhegner.events.exceptions.ProcessaArquivoException;
 
 @Service
@@ -18,7 +18,7 @@ public class FileUploadService {
 	@Autowired
 	private ParticipanteService participanteService;
 
-	public void processarFile(MultipartFile mf, TipoArquivo tipo) throws ProcessaArquivoException {
+	public void processarFile(MultipartFile mf, ETipoArquivo tipo) throws ProcessaArquivoException {
 
 		try {
 			processa(mf, tipo);
@@ -28,12 +28,12 @@ public class FileUploadService {
 
 	}
 
-	private void processa(MultipartFile mf, TipoArquivo tipo) throws IOException {
+	private void processa(MultipartFile mf, ETipoArquivo tipo) throws IOException {
 
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(mf.getInputStream()))) {
 			while (reader.ready()) {
 				String line = reader.readLine();
-				if (TipoArquivo.PARTICIPANTE.equals(tipo))
+				if (ETipoArquivo.PARTICIPANTE.equals(tipo))
 					lerLinhaFileParticipante(line);
 			}
 		}
@@ -41,7 +41,7 @@ public class FileUploadService {
 
 	private void lerLinhaFileParticipante(String line) {
 
-		String[] campos = line.split(";");
+		String[] campos = line.split(",");
 
 		criaObjetoParticipante(campos);
 	}
@@ -56,7 +56,7 @@ public class FileUploadService {
 		dto.setUltimoNome(campos[3]);
 		dto.setPais(campos[4]);
 		dto.setIdioma1(campos[5]);
-		dto.setIdioma1(campos[6]);
+		dto.setIdioma2(campos[6]);
 		dto.setIdioma3(campos[7]);
 		dto.setCodigoHotel(campos[8]);
 		dto.setNomeHotel(campos[9]);

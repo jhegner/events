@@ -1,9 +1,12 @@
 package br.com.jhegner.events.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +15,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import br.com.jhegner.events.enums.EAnotacao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,27 +24,23 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "TAB_PARTICIPANTE")
-public class Participante implements Serializable {
+@Table(name = "TAB_ANOTACAO")
+public class Anotacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(insertable = true, nullable = false, unique = true)
-	private Long numeroInscricao;
-	private Long numeroInscricaoGrupo;
-	private String primeiroNome;
-	private String ultimoNome;
-	private String pais;
-	private String idioma1;
-	private String idioma2;
-	private String idioma3;
-	private String codigoHotel;
-	private String nomeHotel;
-	private String codigoGrupoLocacao;
-	private String empresa;
-	private String email;
+	private Long numeroSequencial;
+
+	private String texto;
+
+	@Enumerated(EnumType.STRING)
+	private EAnotacao tipoAnotacao;
+
+	@Column(columnDefinition = "TIMESTAMP")
+	private LocalDateTime dateTime;
 
 	@Override
 	public String toString() {

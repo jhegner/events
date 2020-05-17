@@ -1,12 +1,14 @@
 package br.com.jhegner.events.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -20,30 +22,29 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "TAB_PARTICIPANTE")
-public class Participante implements Serializable {
+@Table(name = "TAB_CENTRO_RECEPCAO")
+public class CentroRecepcao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(insertable = true, nullable = false, unique = true)
-	private Long numeroInscricao;
-	private Long numeroInscricaoGrupo;
-	private String primeiroNome;
-	private String ultimoNome;
+	private Long numeroIdentificador;
+	private String endereco;
+	private String complemento;
+	private String zona;
+	private String bairro;
+	private String cidade;
+	private String estado;
 	private String pais;
-	private String idioma1;
-	private String idioma2;
-	private String idioma3;
-	private String codigoHotel;
-	private String nomeHotel;
-	private String codigoGrupoLocacao;
-	private String empresa;
-	private String email;
+	private String cep;
+	@OneToMany
+	private List<GrupoRecepcao> gruposRecepcao;
 
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
+
 }

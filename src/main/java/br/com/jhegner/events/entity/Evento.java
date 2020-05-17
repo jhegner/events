@@ -1,6 +1,7 @@
 package br.com.jhegner.events.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,27 +21,22 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "TAB_PARTICIPANTE")
-public class Participante implements Serializable {
+@Table(name = "TAB_EVENTO")
+public class Evento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(insertable = true, nullable = false, unique = true)
-	private Long numeroInscricao;
-	private Long numeroInscricaoGrupo;
-	private String primeiroNome;
-	private String ultimoNome;
-	private String pais;
-	private String idioma1;
-	private String idioma2;
-	private String idioma3;
-	private String codigoHotel;
-	private String nomeHotel;
-	private String codigoGrupoLocacao;
-	private String empresa;
-	private String email;
+	private Long numeroIdentificador;
+
+	private String descricao;
+
+	private String local;
+
+	@Column(columnDefinition = "TIMESTAMP")
+	private LocalDateTime dataHora;
 
 	@Override
 	public String toString() {

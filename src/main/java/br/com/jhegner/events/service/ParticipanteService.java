@@ -23,7 +23,7 @@ import br.com.jhegner.events.dto.HotelDTO;
 import br.com.jhegner.events.dto.ParticipanteDTO;
 import br.com.jhegner.events.dto.PesquisaParticipanteDTO;
 import br.com.jhegner.events.entity.Participante;
-import br.com.jhegner.events.enums.Ordenacao;
+import br.com.jhegner.events.enums.EOrdenacao;
 import br.com.jhegner.events.repositories.ParticipanteRepository;
 
 @Service
@@ -69,13 +69,13 @@ public class ParticipanteService {
 		List<String> order = new ArrayList<String>();
 
 		if (StringUtils.isNotEmpty(dtoPesq.getOrderPor1())) {
-			order.add(Ordenacao.obterOrdenacaoPeloCodigo(dtoPesq.getOrderPor1()).getCampo());
+			order.add(EOrdenacao.obterOrdenacaoPeloCodigo(dtoPesq.getOrderPor1()).getCampo());
 		}
 		if (StringUtils.isNotEmpty(dtoPesq.getOrderPor2())) {
-			order.add(Ordenacao.obterOrdenacaoPeloCodigo(dtoPesq.getOrderPor2()).getCampo());
+			order.add(EOrdenacao.obterOrdenacaoPeloCodigo(dtoPesq.getOrderPor2()).getCampo());
 		}
 		if (StringUtils.isNotEmpty(dtoPesq.getOrderPor3())) {
-			order.add(Ordenacao.obterOrdenacaoPeloCodigo(dtoPesq.getOrderPor3()).getCampo());
+			order.add(EOrdenacao.obterOrdenacaoPeloCodigo(dtoPesq.getOrderPor3()).getCampo());
 		}
 
 		Sort sort = null;
@@ -83,7 +83,7 @@ public class ParticipanteService {
 		if (!order.isEmpty()) {
 			sort = Sort.by(Direction.ASC, order.toArray(new String[0]));
 		} else {
-			sort = Sort.by(Direction.ASC, Ordenacao.FirstName.getCampo());
+			sort = Sort.by(Direction.ASC, EOrdenacao.FirstName.getCampo());
 		}
 
 		Pageable pageable = PageRequest.of(0, Integer.parseInt(dtoPesq.getQtdLinhas()), sort);

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.jhegner.events.enums.TipoArquivo;
+import br.com.jhegner.events.enums.ETipoArquivo;
 import br.com.jhegner.events.exceptions.ProcessaArquivoException;
 import br.com.jhegner.events.service.FileUploadService;
 
@@ -28,7 +28,7 @@ public class FileUploadController {
 			RedirectAttributes redirectAttributes) {
 
 		if (null != file && StringUtils.isNotEmpty(file.getOriginalFilename())) {
-			fileService.processarFile(file, TipoArquivo.PARTICIPANTE);
+			fileService.processarFile(file, ETipoArquivo.PARTICIPANTE);
 			redirectAttributes.addFlashAttribute("message_success", "Arquivo carregado com sucesso!");
 		} else {
 			redirectAttributes.addFlashAttribute("message_error", "Erro - arquivo não informado.");

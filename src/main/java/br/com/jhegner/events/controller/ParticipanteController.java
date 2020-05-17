@@ -27,6 +27,24 @@ public class ParticipanteController {
 	@Autowired
 	private ParticipanteService cs;
 
+	@GetMapping
+	public String goDefault(Model model) {
+
+		// slots
+		List<String> slots = cs.pesquisaTodosGruposLocacao();
+		model.addAttribute("slots", slots);
+
+		// hoteis
+		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+		model.addAttribute("hoteis", hoteis);
+
+		// participantes
+		model.addAttribute("participante", null);
+		model.addAttribute("filtroDto", new PesquisaParticipanteDTO());
+
+		return "participante";
+	}
+
 	@PostMapping("/pesquisa")
 	public String pesquisar(@Validated @ModelAttribute("filtroDto") PesquisaParticipanteDTO pesqDto,
 			BindingResult bindingResult, Model model) {

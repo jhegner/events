@@ -1,2 +1,0 @@
-12220;232;Figueredo;Manoel;Angola;Portugues;Kimbumdu;Lingala;001;Ibis Congonhas;1021;Grupo Amigos;figueredo.manoel@amigos.co.ao
-12344;232;Jorge Amado;Cardoso;Portugal;Portugues;Espanhol;;001;Hotel Transamerica;1020;Amados Inc;jo-amado@amados.co.ao
