@@ -1,0 +1,117 @@
+	<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_head.html :: head"></head>
+<body>
+
+	<div class="container mb-5">
+
+		<div th:replace="_commons.html :: jumbotron"></div>
+		
+		<div th:replace="_commons.html :: message"></div>
+		
+		<h1 class="text-success">
+			<span>Participantes</span>
+		</h1>
+		<h3 class="mt-3">
+			<small class="text-muted">Informacoes de cadastro</small>
+		</h3>
+		<div class="card">
+			<div class="card-body p-4">
+				<form id="form-manutencao-participanteo" action="#" th:action="@{/participante/altera}" 
+					th:object="${participanteDto}" method="post">
+					
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="applicationNumber"><b>Numero Inscricao</b></label> 
+							<input type="text" class="form-control" id="numeroInscricao" maxlength="40" th:field="*{numeroInscricao}" disabled="disabled">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="applicationNumberGroup"><b>Numero Inscricao Grupo</b></label> 
+							<input type="text" class="form-control" id="numeroInscricaoGrupo" maxlength="40" th:field="*{numeroInscricaoGrupo}">
+						</div>
+						
+						<div class="form-group col-md-3">
+							<label for="primeiroNome"><b>Primeiro Nome</b></label> 
+							<input type="text" class="form-control" id="primeiroNome" maxlength="40" th:field="*{primeiroNome}">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="ultimoNome"><b>Ultimo Nome</b></label> 
+							<input type="text" class="form-control" id="ultimoNome" maxlength="40" th:field="*{ultimoNome}">
+						</div>						
+					</div>
+					
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="hotelHospedagem"><b>Hotel Hospedagem</b></label> 
+							<input type="text" class="form-control" id="hotelHospedagem" maxlength="40" th:field="*{nomeHotel}">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="idioma1"><b>Idioma 1</b></label> 
+							<select id="inputState" class="form-control" name="idioma1" th:field="*{idioma1}">
+								<option value="" selected>Selecione...</option>
+								<option th:each="idioma : ${idiomas}" 
+										th:value="${idioma.nome}"
+										th:text="${idioma.nome}">Idioma</option>
+							</select>							
+						</div>
+						<div class="form-group col-md-3">
+							<label for="idioma2"><b>Idioma 2</b></label> 
+							<select id="inputState" class="form-control" name="idioma2" th:field="*{idioma2}">
+								<option value="" selected>Selecione...</option>
+								<option th:each="idioma : ${idiomas}" 
+										th:value="${idioma.nome}"
+										th:text="${idioma.nome}">Idioma</option>
+							</select>							
+						</div>
+						<div class="form-group col-md-3">
+							<label for="idioma3"><b>Idioma 3</b></label> 
+							<select id="inputState" class="form-control" name="idioma3" th:field="*{idioma3}">
+								<option value="" selected>Selecione...</option>
+								<option th:each="idioma : ${idiomas}" 
+										th:value="${idioma.nome}"
+										th:text="${idioma.nome}">Idioma</option>
+							</select>							
+						</div>
+					</div>
+					
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="codigoGrupoLocacao"><b>Codigo grupo locacao</b></label> 
+							<input type="text" class="form-control" id="codigoGrupoLocacao" maxlength="40" th:field="*{codigoGrupoLocacao}">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="empresa"><b>Empresa</b></label> 
+							<input type="text" class="form-control" id="empresa" maxlength="40" th:field="*{empresa}">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="email"><b>Email</b></label> 
+							<input type="text" class="form-control" id="email" maxlength="40" th:field="*{email}">
+						</div>
+					</div>
+					
+					<div class="float-right">
+						<button type="submit" class="btn btn-success"> <i class="fas fa-save"></i> Salvar</button>
+						<button type="submit" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> Remover</button>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+
+		<div class="mb-5">
+			<div class="mt-5">
+				<a href="/participante" class="btn float-right"> <i class="fas fa-long-arrow-alt-left"></i> <span>Voltar</span></a>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="_commons.html :: footer"></footer>
+
+	<script th:replace="_commons.html :: script_tag_1"></script>
+	<script th:replace="_commons.html :: script_tag_2"></script>
+	<script th:replace="_commons.html :: script_tag_3"></script>
+	
+	<br />
+</body>
+</html>
