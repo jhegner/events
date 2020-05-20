@@ -68,15 +68,6 @@
 						<div class="form-group col-md-3">
 							<label for="slotName"><b>Codigo Grupo Locacao</b></label> 
 							<input type="text" class="form-control" id="codigoGrupoLocacao" maxlength="40" th:field="*{codigoGrupoLocacao}"> 
-							
-<!-- 							<select id="inputState" class="form-control" name="slotName" th:field="*{slotName}"> -->
-<!-- 								<option value="" selected>Selecione...</option> -->
-<!-- 								<option th:each="slot : ${slots}"  -->
-<!-- 										th:value="${slot}" -->
-<!-- 										th:text="${slot}">Slot Name</option> -->
-<!-- 							</select> -->
-
-
 						</div>
 					</div>
 <!-- 					<div class="form-group"> -->
@@ -150,7 +141,7 @@
 					</div>
 
 					<div class="float-right">
-						<button type="submit" class="btn btn-success"> <i class="fas fa-plus"></i> Novo</button>
+						<a href="/participante/novo" role="button" class="btn btn-primary"> <i class="fas fa-plus"></i> Novo</a> 
 						<button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Pesquisar</button>
 						<a href="/participante/limpar" role="button" class="btn btn-secondary">Limpar</a> 
 					</div>
@@ -173,6 +164,8 @@
 						<th scope="col">Primeiro Nome</th>
 						<th scope="col">Ultimo Nome</th>
 						<th scope="col">Hotel</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -183,6 +176,16 @@
 						<td th:text="${participante.primeiroNome}">Mark</td>
 						<td th:text="${participante.ultimoNome}">Otto</td>
 						<td th:text="${participante.nomeHotel}">Ibis São Paulo</td>
+						<td>
+							<a href="#" class="btn btn-primary btn-sm float-right"> <i class="fas fa-edit"></i>
+								<span>Editar</span>
+							</a>
+						</td>
+						<td>
+							<a href="#" class="btn btn-danger btn-sm float-right"> <i class="fas fa-trash-alt"></i> 
+								<span>Remover</span>
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
