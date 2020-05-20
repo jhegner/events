@@ -30,10 +30,6 @@ public class ParticipanteController {
 	@GetMapping
 	public String goDefault(Model model) {
 
-		// slots
-		List<String> slots = cs.pesquisaTodosGruposLocacao();
-		model.addAttribute("slots", slots);
-
 		// hoteis
 		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
 		model.addAttribute("hoteis", hoteis);
@@ -49,13 +45,9 @@ public class ParticipanteController {
 	public String pesquisar(@Validated @ModelAttribute("filtroDto") PesquisaParticipanteDTO pesqDto,
 			BindingResult bindingResult, Model model) {
 
-//		validaPesquisa(pesqDto);
-
-		List<String> slots = cs.pesquisaTodosGruposLocacao();
 		List<ParticipanteDTO> list = pesquisar(pesqDto);
 		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
 
-		model.addAttribute("slots", slots);
 		model.addAttribute("hoteis", hoteis);
 		model.addAttribute("participantes", list);
 		model.addAttribute("pesqDto", pesqDto);
@@ -72,10 +64,31 @@ public class ParticipanteController {
 		return "redirect:/participante";
 	}
 
-	private void validaPesquisa(PesquisaParticipanteDTO filtro) {
-		if ((null == filtro.getNumeroInscricao()) || (null == filtro.getDataInicio() && null == filtro.getDataFim())) {
-			throw new ValidaFiltroPesquisaException("Filtros de pesquisa não preenchidos");
-		}
+	@GetMapping("/novo")
+	public String novo(Model model) {
+
+		// hoteis
+		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+		model.addAttribute("hoteis", hoteis);
+
+		// participantes
+		model.addAttribute("participanteDto", new ParticipanteDTO());
+
+		return "participante-manutencao";
+	}
+
+	@PostMapping("/altera")
+	public String salvar(@Validated @ModelAttribute("participanteDto") ParticipanteDTO dto, BindingResult bindingResult,
+			Model model) {
+
+		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+
+		model.addAttribute("hoteis", hoteis);
+		model.addAttribute("participanteDto", new ParticipanteDTO());
+
+		model.addAttribute("message_success", "Manutencao realizada com sucesso");
+
+		return "participante-manutencao";
 	}
 
 	private List<ParticipanteDTO> pesquisar(PesquisaParticipanteDTO pesqDto) {
