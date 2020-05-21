@@ -36,7 +36,6 @@ public class Participante implements Serializable {
 	private String idioma1;
 	private String idioma2;
 	private String idioma3;
-	private String codigoHotel;
 	private String nomeHotel;
 	private String codigoGrupoLocacao;
 	private String empresa;

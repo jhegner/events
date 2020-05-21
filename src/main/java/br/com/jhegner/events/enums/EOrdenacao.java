@@ -4,8 +4,11 @@ import java.util.Arrays;
 
 public enum EOrdenacao {
 
-	SlotName("1", "codigoGrupoHotel"), Group("2", "numeroPeticaoGrupo"), Hotel("3", "codigoHotel"),
-	FirstName("4", "primeiroNome"), LastName("5", "ultimoNome");
+	SlotName("1", "codigoGrupoHotel"), 
+	Group("2", "numeroPeticaoGrupo"), 
+	Hotel("3", "nomeHotel"),
+	FirstName("4", "primeiroNome"), 
+	LastName("5", "ultimoNome");
 
 	private String codigo;
 	private String campo;
