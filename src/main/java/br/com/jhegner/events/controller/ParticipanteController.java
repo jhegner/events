@@ -25,13 +25,13 @@ import br.com.jhegner.events.service.ParticipanteService;
 public class ParticipanteController {
 
 	@Autowired
-	private ParticipanteService cs;
+	private ParticipanteService service;
 
 	@GetMapping
 	public String goDefault(Model model) {
 
 		// hoteis
-		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+		List<HotelDTO> hoteis = service.pesquisaTodosHoteis();
 		model.addAttribute("hoteis", hoteis);
 
 		// participantes
@@ -46,7 +46,7 @@ public class ParticipanteController {
 			BindingResult bindingResult, Model model) {
 
 		List<ParticipanteDTO> list = pesquisar(pesqDto);
-		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+		List<HotelDTO> hoteis = service.pesquisaTodosHoteis();
 
 		model.addAttribute("hoteis", hoteis);
 		model.addAttribute("participantes", list);
@@ -68,8 +68,16 @@ public class ParticipanteController {
 	public String novo(Model model) {
 
 		// hoteis
-		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+		List<HotelDTO> hoteis = service.pesquisaTodosHoteis();
 		model.addAttribute("hoteis", hoteis);
+
+		// idiomas
+		List<String> idiomas = service.pesquisaTodosIdiomas();
+		model.addAttribute("idiomas", idiomas);
+
+		// paises
+		List<String> paises = service.pesquisaTodosPaises();
+		model.addAttribute("paises", paises);
 
 		// participantes
 		model.addAttribute("participanteDto", new ParticipanteDTO());
@@ -81,10 +89,12 @@ public class ParticipanteController {
 	public String salvar(@Validated @ModelAttribute("participanteDto") ParticipanteDTO dto, BindingResult bindingResult,
 			Model model) {
 
-		List<HotelDTO> hoteis = cs.pesquisaTodosHoteis();
+		List<HotelDTO> hoteis = service.pesquisaTodosHoteis();
+
+		ParticipanteDTO dtoNovo = service.incluir(dto);
 
 		model.addAttribute("hoteis", hoteis);
-		model.addAttribute("participanteDto", new ParticipanteDTO());
+		model.addAttribute("participanteDto", dtoNovo);
 
 		model.addAttribute("message_success", "Manutencao realizada com sucesso");
 
@@ -98,9 +108,9 @@ public class ParticipanteController {
 		if (null != pesqDto) {
 
 			if (null != pesqDto.getNumeroInscricao()) {
-				ret = cs.pesquisarPorNumeroInscricao(pesqDto);
+				ret = service.pesquisarPorNumeroInscricao(pesqDto);
 			} else {
-				ret = cs.search(pesqDto);
+				ret = service.search(pesqDto);
 			}
 		}
 
