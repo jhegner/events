@@ -15,8 +15,8 @@ public interface ParticipanteRepository
 	@Query("select distinct(p.codigoGrupoLocacao) from Participante p")
 	List<String> findByAsStringAndSortGrupoLocacao(Sort sort);
 
-	@Query("select distinct(p.codigoHotel), p.nomeHotel from Participante p")
-	List<String[]> findAllHoteis(Sort sort);
+	@Query("select distinct(p.nomeHotel) from Participante p")
+	List<String> findAllHoteis(Sort sort);
 
 	@Query("select p.idioma1, p.idioma2, p.idioma3 from Participante p group by p.idioma1, p.idioma2, p.idioma3")
 	List<String[]> findByAsStringAndSortIdiomas();
