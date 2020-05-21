@@ -19,7 +19,7 @@
 		<div class="card">
 			<div class="card-body p-4">
 				<form id="form-manutencao-participanteo" action="#" th:action="@{/participante/altera}" 
-					th:object="${participanteDto}" method="post">
+					th:object="${participanteDto}" method="post" autocomplete="off">
 					
 					<div class="form-row">
 						<div class="form-group col-md-3">
@@ -47,32 +47,22 @@
 							<input type="text" class="form-control" id="hotelHospedagem" maxlength="40" th:field="*{nomeHotel}">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="idioma1"><b>Idioma 1</b></label> 
-							<select id="inputState" class="form-control" name="idioma1" th:field="*{idioma1}">
-								<option value="" selected>Selecione...</option>
-								<option th:each="idioma : ${idiomas}" 
-										th:value="${idioma.nome}"
-										th:text="${idioma.nome}">Idioma</option>
-							</select>							
+							<label for="empresa"><b>Empresa</b></label> 
+							<input type="text" class="form-control" id="empresa" maxlength="40" th:field="*{empresa}">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="idioma2"><b>Idioma 2</b></label> 
-							<select id="inputState" class="form-control" name="idioma2" th:field="*{idioma2}">
-								<option value="" selected>Selecione...</option>
-								<option th:each="idioma : ${idiomas}" 
-										th:value="${idioma.nome}"
-										th:text="${idioma.nome}">Idioma</option>
-							</select>							
-						</div>
+							<label for="email"><b>Email</b></label> 
+							<input type="text" class="form-control" id="email" maxlength="40" th:field="*{email}">
+						</div>			
 						<div class="form-group col-md-3">
-							<label for="idioma3"><b>Idioma 3</b></label> 
-							<select id="inputState" class="form-control" name="idioma3" th:field="*{idioma3}">
+							<label for="idioma1"><b>Pais</b></label> 
+							<select id="inputState" class="form-control" name="pais" th:field="*{pais}">
 								<option value="" selected>Selecione...</option>
-								<option th:each="idioma : ${idiomas}" 
-										th:value="${idioma.nome}"
-										th:text="${idioma.nome}">Idioma</option>
+								<option th:each="pais : ${paises}" 
+										th:value="${pais}"
+										th:text="${pais}">Pais</option>
 							</select>							
-						</div>
+						</div>									
 					</div>
 					
 					<div class="form-row">
@@ -81,12 +71,31 @@
 							<input type="text" class="form-control" id="codigoGrupoLocacao" maxlength="40" th:field="*{codigoGrupoLocacao}">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="empresa"><b>Empresa</b></label> 
-							<input type="text" class="form-control" id="empresa" maxlength="40" th:field="*{empresa}">
+							<label for="idioma1"><b>Idioma 1</b></label> 
+							<select id="inputState" class="form-control" name="idioma1" th:field="*{idioma1}">
+								<option value="" selected>Selecione...</option>
+								<option th:each="idioma : ${idiomas}" 
+										th:value="${idioma}"
+										th:text="${idioma}">Idioma</option>
+							</select>							
 						</div>
 						<div class="form-group col-md-3">
-							<label for="email"><b>Email</b></label> 
-							<input type="text" class="form-control" id="email" maxlength="40" th:field="*{email}">
+							<label for="idioma2"><b>Idioma 2</b></label> 
+							<select id="inputState" class="form-control" name="idioma2" th:field="*{idioma2}">
+								<option value="" selected>Selecione...</option>
+								<option th:each="idioma : ${idiomas}" 
+										th:value="${idioma}"
+										th:text="${idioma}">Idioma</option>
+							</select>							
+						</div>
+						<div class="form-group col-md-3">
+							<label for="idioma3"><b>Idioma 3</b></label> 
+							<select id="inputState" class="form-control" name="idioma3" th:field="*{idioma3}">
+								<option value="" selected>Selecione...</option>
+								<option th:each="idioma : ${idiomas}" 
+										th:value="${idioma}"
+										th:text="${idioma}">Idioma</option>
+							</select>							
 						</div>
 					</div>
 					
