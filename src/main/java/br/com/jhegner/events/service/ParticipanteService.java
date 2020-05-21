@@ -1,6 +1,8 @@
 package br.com.jhegner.events.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +25,9 @@ import br.com.jhegner.events.dto.HotelDTO;
 import br.com.jhegner.events.dto.ParticipanteDTO;
 import br.com.jhegner.events.dto.PesquisaParticipanteDTO;
 import br.com.jhegner.events.entity.Participante;
+import br.com.jhegner.events.enums.EIdioma;
 import br.com.jhegner.events.enums.EOrdenacao;
+import br.com.jhegner.events.enums.EPais;
 import br.com.jhegner.events.repositories.ParticipanteRepository;
 
 @Service
@@ -33,17 +37,28 @@ public class ParticipanteService {
 	private ParticipanteRepository repository;
 
 	@Transactional
-	public void incluir(ParticipanteDTO dto) {
+	public ParticipanteDTO incluir(ParticipanteDTO dto) {
+
+		if (null == dto.getNumeroInscricao()) {
+			dto.setNumeroInscricao(repository.count() + BigDecimal.ONE.longValue());
+		}
 
 		Participante c = preencheObjParticipante(dto);
 
-		repository.save(c);
+		Participante entity = repository.save(c);
+
+		return preencheDtoParticipante(entity);
 	}
 
 	public List<ParticipanteDTO> pesquisarPorNumeroInscricao(PesquisaParticipanteDTO dtoPesq) {
 
 		List<ParticipanteDTO> dtos = new ArrayList<ParticipanteDTO>();
 		Participante obj = repository.findById(dtoPesq.getNumeroInscricao()).orElse(null);
+
+		if (null == obj) {
+			return dtos;
+		}
+
 		dtos.add(preencheDtoParticipante(obj));
 
 		return dtos;
@@ -101,10 +116,15 @@ public class ParticipanteService {
 
 		Set<String> setIdiomas = new HashSet<>();
 
-		for (String[] objArr : objs) {
-			for (String idioma : objArr) {
-				setIdiomas.add(idioma);
+		if (objs != null && !objs.isEmpty()) {
+
+			for (String[] objArr : objs) {
+				for (String idioma : objArr) {
+					setIdiomas.add(idioma);
+				}
 			}
+		} else {
+			return Arrays.asList(EIdioma.Portuguese.name(), EIdioma.English.name(), EIdioma.Spanisch.name());
 		}
 
 		return new ArrayList<>(setIdiomas);
@@ -118,12 +138,12 @@ public class ParticipanteService {
 	@Cacheable("hoteis")
 	public List<HotelDTO> pesquisaTodosHoteis() {
 
-		List<String[]> objs = repository.findAllHoteis(Sort.by("nomeHotel"));
+		List<String> objs = repository.findAllHoteis(Sort.by("nomeHotel"));
 
 		List<HotelDTO> hoteis = new ArrayList<HotelDTO>(objs.size());
 
-		for (String[] obj : objs) {
-			hoteis.add(new HotelDTO(obj[0], obj[1]));
+		for (String obj : objs) {
+			hoteis.add(new HotelDTO(obj));
 		}
 
 		return hoteis;
@@ -141,7 +161,7 @@ public class ParticipanteService {
 		entity.setIdioma1(dto.getIdioma1());
 		entity.setIdioma1(dto.getIdioma2());
 		entity.setIdioma3(dto.getIdioma3());
-		entity.setCodigoHotel(dto.getCodigoHotel());
+//		entity.setCodigoHotel(dto.getCodigoHotel());
 		entity.setNomeHotel(dto.getNomeHotel());
 		entity.setCodigoGrupoLocacao(dto.getCodigoGrupoLocacao());
 		entity.setEmpresa(dto.getEmpresa());
@@ -162,12 +182,16 @@ public class ParticipanteService {
 		dto.setIdioma1(entity.getIdioma1());
 		dto.setIdioma1(entity.getIdioma2());
 		dto.setIdioma3(entity.getIdioma3());
-		dto.setCodigoHotel(entity.getCodigoHotel());
+//		dto.setCodigoHotel(entity.getCodigoHotel());
 		dto.setNomeHotel(entity.getNomeHotel());
 		dto.setCodigoGrupoLocacao(entity.getCodigoGrupoLocacao());
 		dto.setEmpresa(entity.getEmpresa());
 		dto.setEmail(entity.getEmail());
 
 		return dto;
+	}
+
+	public List<String> pesquisaTodosPaises() {
+		return Arrays.asList(EPais.Angola.name(), EPais.Brasil.name(), EPais.Alemanha.name(), EPais.Espanha.name());
 	}
 }
