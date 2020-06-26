@@ -170,6 +170,10 @@ public class ParticipanteService {
 		return entity;
 	}
 
+	public void remove(Long numeroInscricao) {
+		repository.deleteById(numeroInscricao);
+	}
+
 	private ParticipanteDTO preencheDtoParticipante(Participante entity) {
 
 		ParticipanteDTO dto = new ParticipanteDTO();

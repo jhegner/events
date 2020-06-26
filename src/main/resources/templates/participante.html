@@ -1,4 +1,5 @@
-	<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="_head.html :: head"></head>
@@ -7,23 +8,25 @@
 	<div class="container mb-5">
 
 		<div th:replace="_commons.html :: jumbotron"></div>
-		
+
 		<div th:replace="_commons.html :: message"></div>
-		
+
 		<h1 class="text-success">
 			<span>Participantes</span>
 		</h1>
 		<h3 class="mt-3">
 			<small class="text-muted">Filtro de pesquisa</small>
 		</h3>
-		<div class="card">
-			<div class="card-body p-4">
-				<form id="form-pesquisa-participanteo" action="#" th:action="@{/participante/pesquisa}" 
-					th:object="${filtroDto}" method="post">
+		<form id="form-pesquisa-participanteo" action="#"
+			th:action="@{/participante/pesquisa}" th:object="${filtroDto}"
+			method="post">
+			<div class="card">
+				<div class="card-body p-4">
 					<div class="form-row">
 						<div class="form-group col-md-3">
-							<label for="primeiroNome"><b>Primeiro Nome</b></label> 
-							<input type="text" class="form-control" id="primeiroNome" maxlength="40" th:field="*{primeiroNome}">
+							<label for="primeiroNome"><b>Primeiro Nome</b></label> <input
+								type="text" class="form-control" id="primeiroNome"
+								maxlength="40" th:field="*{primeiroNome}">
 
 							<!-- 							<input type="text" id="primeiroNome" maxlength="40" th:field="*{firstName}"  -->
 							<!-- 							th:class="${#fields.hasErrors('firstName')}? 'form-control is-invalid' : 'form-control'"> -->
@@ -34,23 +37,25 @@
 
 						</div>
 						<div class="form-group col-md-3">
-							<label for="ultimoNome"><b>Ultimo Nome</b></label> 
-							<input type="text" class="form-control" id="ultimoNome" maxlength="40" th:field="*{ultimoNome}">
+							<label for="ultimoNome"><b>Ultimo Nome</b></label> <input
+								type="text" class="form-control" id="ultimoNome" maxlength="40"
+								th:field="*{ultimoNome}">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="hotelHospedagem"><b>Hotel Hospedagem</b></label> 
-<!-- 							<input type="text" class="form-control" id="hotelHospedagem" maxlength="40" th:field="*{hotel}"> -->
-							
-							<select id="inputState" class="form-control" name="slotName" th:field="*{hotel}">
+							<label for="hotelHospedagem"><b>Hotel Hospedagem</b></label>
+							<!-- 							<input type="text" class="form-control" id="hotelHospedagem" maxlength="40" th:field="*{hotel}"> -->
+
+							<select id="inputState" class="form-control" name="slotName"
+								th:field="*{hotel}">
 								<option value="" selected>Selecione...</option>
-								<option th:each="hotel : ${hoteis}" 
-										th:value="${hotel.codigo}"
-										th:text="${hotel.nome}">Hotel</option>
-							</select>							
-							
+								<option th:each="hotel : ${hoteis}" th:value="${hotel.nome}"
+									th:text="${hotel.nome}">Hotel</option>
+							</select>
+
 						</div>
 						<div class="form-group col-md-3">
-							<label for="inputState"><b>Evento</b></label> <select id="inputState" class="form-control" disabled="disabled">
+							<label for="inputState"><b>Evento</b></label> <select
+								id="inputState" class="form-control" disabled="disabled">
 								<option selected>Selecione...</option>
 								<option>...</option>
 							</select>
@@ -58,50 +63,55 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-3">
-							<label for="applicationNumber"><b>Numero Inscricao</b></label> 
-							<input type="text" class="form-control" id="numeroInscricao" maxlength="40" th:field="*{numeroInscricao}">
+							<label for="applicationNumber"><b>Numero Inscricao</b></label> <input
+								type="text" class="form-control" id="numeroInscricao"
+								maxlength="40" th:field="*{numeroInscricao}">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="applicationNumberGroup"><b>Numero Inscricao Grupo</b></label> 
-							<input type="text" class="form-control" id="numeroInscricaoGrupo" maxlength="40" th:field="*{numeroInscricaoGrupo}">
+							<label for="applicationNumberGroup"><b>Numero
+									Inscricao Grupo</b></label> <input type="text" class="form-control"
+								id="numeroInscricaoGrupo" maxlength="40"
+								th:field="*{numeroInscricaoGrupo}">
 						</div>
 						<div class="form-group col-md-3">
-							<label for="slotName"><b>Codigo Grupo Locacao</b></label> 
-							<input type="text" class="form-control" id="codigoGrupoLocacao" maxlength="40" th:field="*{codigoGrupoLocacao}"> 
+							<label for="slotName"><b>Codigo Grupo Locacao</b></label> <input
+								type="text" class="form-control" id="codigoGrupoLocacao"
+								maxlength="40" th:field="*{codigoGrupoLocacao}">
 						</div>
 					</div>
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="diaDisponivelCapo"><b>Dia disponivel campo</b></label> <br /> -->
-<!-- 						<div class="form-check form-check-inline"> -->
-<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" th:field="*{dia07}"> <label class="form-check-label" -->
-<!-- 								for="inlineCheckbox1">07/07</label> -->
-<!-- 						</div> -->
-<!-- <!-- 						<div class="form-check form-check-inline"> -->
-<!-- <!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" th:field="*{dia08}"> <label class="form-check-label" -->
-<!-- <!-- 								for="inlineCheckbox2">08/07</label> -->
-<!-- <!-- 						</div> -->
-<!-- 						<div class="form-check form-check-inline"> -->
-<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" th:field="*{dia09}"> <label class="form-check-label" -->
-<!-- 								for="inlineCheckbox3">09/07</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-check form-check-inline"> -->
-<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" th:field="*{dia10}"> <label class="form-check-label" -->
-<!-- 								for="inlineCheckbox4">10/07</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-check form-check-inline"> -->
-<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" th:field="*{dia11}"> <label class="form-check-label" -->
-<!-- 								for="inlineCheckbox5">11/07</label> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-check form-check-inline"> -->
-<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox6" th:field="*{dia14}"> <label class="form-check-label" -->
-<!-- 								for="inlineCheckbox6">14/07</label> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-					
+					<!-- 					<div class="form-group"> -->
+					<!-- 						<label for="diaDisponivelCapo"><b>Dia disponivel campo</b></label> <br /> -->
+					<!-- 						<div class="form-check form-check-inline"> -->
+					<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" th:field="*{dia07}"> <label class="form-check-label" -->
+					<!-- 								for="inlineCheckbox1">07/07</label> -->
+					<!-- 						</div> -->
+					<!-- <!-- 						<div class="form-check form-check-inline"> -->
+					<!-- <!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" th:field="*{dia08}"> <label class="form-check-label" -->
+					<!-- <!-- 								for="inlineCheckbox2">08/07</label> -->
+					<!-- <!-- 						</div> -->
+					<!-- 						<div class="form-check form-check-inline"> -->
+					<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox3" th:field="*{dia09}"> <label class="form-check-label" -->
+					<!-- 								for="inlineCheckbox3">09/07</label> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="form-check form-check-inline"> -->
+					<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox4" th:field="*{dia10}"> <label class="form-check-label" -->
+					<!-- 								for="inlineCheckbox4">10/07</label> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="form-check form-check-inline"> -->
+					<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox5" th:field="*{dia11}"> <label class="form-check-label" -->
+					<!-- 								for="inlineCheckbox5">11/07</label> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="form-check form-check-inline"> -->
+					<!-- 							<input class="form-check-input" type="checkbox" id="inlineCheckbox6" th:field="*{dia14}"> <label class="form-check-label" -->
+					<!-- 								for="inlineCheckbox6">14/07</label> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+
 					<div class="form-row">
 						<div class="form-group col-md-2">
-							<label for="inputState">Ordenar por</label> 
-							<select id="inputState" class="form-control" name="orderPor1" th:field="*{orderPor1}">
+							<label for="inputState">Ordenar por</label> <select
+								id="inputState" class="form-control" name="orderPor1"
+								th:field="*{orderPor1}">
 								<option value="" selected>Selecione...</option>
 								<option value="1">Codigo Grupo Locacao</option>
 								<option value="2">Primeiro Nome</option>
@@ -110,8 +120,8 @@
 							</select>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="inputState">&nbsp;</label> 
-							<select id="inputState" class="form-control" name="orderPor2" th:field="*{orderPor2}">
+							<label for="inputState">&nbsp;</label> <select id="inputState"
+								class="form-control" name="orderPor2" th:field="*{orderPor2}">
 								<option value="" selected>Selecione...</option>
 								<option value="1">Codigo Grupo Locacao</option>
 								<option value="2">Primeiro Nome</option>
@@ -120,8 +130,8 @@
 							</select>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="inputState">&nbsp;</label> 
-							<select id="inputState" class="form-control" name="orderPor3" th:field="*{orderPor3}">
+							<label for="inputState">&nbsp;</label> <select id="inputState"
+								class="form-control" name="orderPor3" th:field="*{orderPor3}">
 								<option value="" selected>Selecione...</option>
 								<option value="1">Codigo Grupo Locacao</option>
 								<option value="2">Primeiro Nome</option>
@@ -130,8 +140,8 @@
 							</select>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="linhas">Mostrar (linhas)</label> 
-							<select id="linhas" class="form-control" name="qtdLinhas" th:field="*{qtdLinhas}">
+							<label for="linhas">Mostrar (linhas)</label> <select id="linhas"
+								class="form-control" name="qtdLinhas" th:field="*{qtdLinhas}">
 								<option value="10">10</option>
 								<option value="50" selected>50</option>
 								<option value="500">500</option>
@@ -141,69 +151,75 @@
 					</div>
 
 					<div class="float-right">
-						<a href="/participante/novo" role="button" class="btn btn-primary"> <i class="fas fa-plus"></i> Novo</a> 
-						<button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i> Pesquisar</button>
-						<a href="/participante/limpar" role="button" class="btn btn-secondary">Limpar</a> 
+						<a href="/participante/novo" role="button" class="btn btn-primary">
+							<i class="fas fa-plus"></i> Novo
+						</a>
+						<button type="submit" class="btn btn-primary">
+							<i class="fas fa-search"></i> Pesquisar
+						</button>
+						<a href="/participante/limpar" role="button"
+							class="btn btn-secondary">Limpar</a>
 					</div>
-				</form>
+				</div>
 			</div>
-		</div>
 
-		<div class="mb-5">
-			<h3 class="mt-3">
-				<small class="text-muted">Resultado da pesquisa</small>
-					<a href="#" class="btn float-right"> <i class="fas fa-file-excel"></i> <span>Excel</span></a>
-					<a href="#" class="btn float-right"> <i class="fas fa-file-pdf"></i> <span>PDF</span></a>
-			</h3>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col">Numero Inscricao</th>
-						<th scope="col">Numero Inscricao Grupo</th>
-						<th scope="col">Codigo Grupo Locacao</th>
-						<th scope="col">Primeiro Nome</th>
-						<th scope="col">Ultimo Nome</th>
-						<th scope="col">Hotel</th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="participante : ${participantes}">
-						<th th:text="${participante.numeroInscricao}" scope="row">343451</th>
-						<td th:text="${participante.numeroInscricaoGrupo}">543544</td>
-						<td th:text="${participante.codigoGrupoLocacao}">FA-44234</td>
-						<td th:text="${participante.primeiroNome}">Mark</td>
-						<td th:text="${participante.ultimoNome}">Otto</td>
-						<td th:text="${participante.nomeHotel}">Ibis São Paulo</td>
-						<td>
-							<a href="#" class="btn btn-primary btn-sm float-right"> <i class="fas fa-edit"></i>
-								<span>Editar</span>
-							</a>
-						</td>
-						<td>
-							<a href="#" class="btn btn-danger btn-sm float-right"> <i class="fas fa-trash-alt"></i> 
-								<span>Remover</span>
-							</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="mb-5">
+				<h3 class="mt-3">
+					<small class="text-muted">Resultado da pesquisa</small> <a href="#"
+						class="btn float-right"> <i class="fas fa-file-excel"></i> <span>Excel</span></a>
+					<a href="#" class="btn float-right"> <i class="fas fa-file-pdf"></i>
+						<span>PDF</span></a>
+				</h3>
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">Numero Inscricao</th>
+							<th scope="col">Numero Inscricao Grupo</th>
+							<th scope="col">Codigo Grupo Locacao</th>
+							<th scope="col">Primeiro Nome</th>
+							<th scope="col">Ultimo Nome</th>
+							<th scope="col">Hotel</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="participante : ${participantes}">
+							<th th:text="${participante.numeroInscricao}" scope="row">343451</th>
+							<td th:text="${participante.numeroInscricaoGrupo}">543544</td>
+							<td th:text="${participante.codigoGrupoLocacao}">FA-44234</td>
+							<td th:text="${participante.primeiroNome}">Mark</td>
+							<td th:text="${participante.ultimoNome}">Otto</td>
+							<td th:text="${participante.nomeHotel}">Ibis São Paulo</td>
+							<td><a href="#" class="btn btn-primary btn-sm float-right">
+									<i class="fas fa-edit"></i> <span>Editar</span>
+							</a></td>
+							<td><a
+								th:href="@{/participante/remove/{codigoInscricao}(codigoInscricao = ${participante.numeroInscricao})}"
+								href="#" class="btn btn-danger btn-sm float-right"> <i
+									class="fas fa-trash-alt"></i> <span>Remover</span>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
 
-			<div class="mt-5">
-				<a href="#" role="button" class="btn btn-secondary">Proximo</a> 
-				<a href="#" role="button" class="btn btn-secondary">Anterior</a> 
-				<a href="/dashboard" class="btn float-right"> <i class="fas fa-long-arrow-alt-left"></i> <span>Voltar</span></a>
+				<div class="mt-5">
+					<a href="#" role="button" class="btn btn-secondary">Proximo</a> <a
+						href="#" role="button" class="btn btn-secondary">Anterior</a> <a
+						href="/dashboard" class="btn float-right"> <i
+						class="fas fa-long-arrow-alt-left"></i> <span>Voltar</span></a>
+				</div>
 			</div>
-		</div>
+
+		</form>
 	</div>
-	
+
 	<footer th:replace="_commons.html :: footer"></footer>
 
 	<script th:replace="_commons.html :: script_tag_1"></script>
 	<script th:replace="_commons.html :: script_tag_2"></script>
 	<script th:replace="_commons.html :: script_tag_3"></script>
-	
+
 	<br />
 </body>
 </html>

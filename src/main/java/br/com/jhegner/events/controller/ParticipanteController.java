@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -45,6 +46,13 @@ public class ParticipanteController {
 	public String pesquisar(@Validated @ModelAttribute("filtroDto") PesquisaParticipanteDTO pesqDto,
 			BindingResult bindingResult, Model model) {
 
+		executaPesquisa(model, pesqDto);
+
+		return "participante";
+	}
+
+	private void executaPesquisa(Model model, PesquisaParticipanteDTO pesqDto) {
+
 		List<ParticipanteDTO> list = pesquisar(pesqDto);
 		List<HotelDTO> hoteis = service.pesquisaTodosHoteis();
 
@@ -55,8 +63,6 @@ public class ParticipanteController {
 		if (null == list || list.isEmpty()) {
 			model.addAttribute("message_info", "Pesquisa não encontrou resultados");
 		}
-
-		return "participante";
 	}
 
 	@GetMapping("/limpar")
@@ -99,6 +105,17 @@ public class ParticipanteController {
 		model.addAttribute("message_success", "Manutencao realizada com sucesso");
 
 		return "participante-manutencao";
+	}
+
+	@GetMapping("/remove/{codigoInscricao}")
+	public String remove(@PathVariable("codigoInscricao") String codigoInscricao,
+			@ModelAttribute("filtroDto") PesquisaParticipanteDTO pesqDto, Model model) {
+
+		service.remove(Long.valueOf(codigoInscricao));
+
+//		executaPesquisa(model, pesqDto);
+
+		return "redirect:/participante";
 	}
 
 	private List<ParticipanteDTO> pesquisar(PesquisaParticipanteDTO pesqDto) {
